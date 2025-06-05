@@ -1,0 +1,9 @@
+
+[
+  {"id": "photoresist", "name": "光阻塗佈", "description": "塗佈感光材料作為保護層", "image": "cards/光阻塗佈.png", "order": 1},
+  {"id": "exposure", "name": "曝光", "description": "紫外線照射光罩圖案", "image": "cards/曝光.png", "order": 2},
+  {"id": "develop", "name": "顯影", "description": "沖洗去除曝光區域光阻", "image": "cards/顯影.png", "order": 3},
+  {"id": "etching", "name": "蝕刻", "description": "移除未保護區材料", "image": "cards/蝕刻.png", "order": 4},
+  {"id": "cleaning", "name": "清洗", "description": "移除殘留材料與雜質", "image": "cards/清洗.png", "order": 5},
+  {"id": "inspection", "name": "檢查", "description": "檢查製程是否完整", "image": "cards/檢查.png", "order": 6}
+]
