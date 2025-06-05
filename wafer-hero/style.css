@@ -1,0 +1,27 @@
+
+body {
+  font-family: "微軟正黑體", sans-serif;
+  text-align: center;
+  background: #f0f4ff;
+}
+
+.hidden {
+  display: none;
+}
+
+#card-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.card {
+  width: 120px;
+  height: 160px;
+  border: 2px solid #444;
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: grab;
+}

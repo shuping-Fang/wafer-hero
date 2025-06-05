@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>製程大挑戰 Wafer Hero!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="start-screen">
+    <h1>歡迎來到製程大挑戰！</h1>
+    <p>你能正確完成晶圓製造流程嗎？</p>
+    <button onclick="startGame()">開始遊戲</button>
+  </div>
+
+  <div id="game-screen" class="hidden">
+    <h2>請依序排列製程步驟</h2>
+    <div id="card-area"></div>
+    <button onclick="submitOrder()">完成排序</button>
+  </div>
+
+  <div id="result-screen" class="hidden">
+    <h2 id="result-message"></h2>
+    <div id="correct-sequence"></div>
+    <button onclick="restartGame()">再挑戰一次</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
