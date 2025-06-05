@@ -9,7 +9,7 @@ body {
   display: none;
 }
 
-#card-area {
+#card-area, #correct-sequence {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -18,10 +18,10 @@ body {
 
 .card {
   width: 120px;
-  height: 160px;
+  height: 180px;
   border: 2px solid #444;
   background: #fff;
   border-radius: 10px;
-  padding: 8px;
-  cursor: grab;
+  padding: 6px;
+  box-sizing: border-box;
 }

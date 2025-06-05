@@ -22,33 +22,37 @@ function renderCards(cardData) {
     card.draggable = true;
     card.dataset.id = step.id;
     card.innerHTML = `
-      <img src="assets/${step.image}" style="width:100%; border-radius:6px;"><br>
+      <img src="assets/${step.image}" style="width:100%; height:100px; object-fit:contain; border-radius:6px;"><br>
       <strong>${step.name}</strong>
     `;
     card.addEventListener('dragstart', dragStart);
+    card.addEventListener('dragover', e => e.preventDefault());
+    card.addEventListener('drop', dropCard);
     area.appendChild(card);
   });
-  enableDragDrop(area);
 }
-
 
 function dragStart(event) {
-  event.dataTransfer.setData('text/plain', event.target.dataset.id);
+  event.dataTransfer.setData('text/plain', event.currentTarget.dataset.id);
 }
 
-function enableDragDrop(container) {
-  container.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('dragover', e => e.preventDefault());
-    card.addEventListener('drop', e => {
-      e.preventDefault();
-      const draggedId = e.dataTransfer.getData('text/plain');
-      const target = e.target.closest('.card');
-      if (target && draggedId !== target.dataset.id) {
-        const dragged = container.querySelector(`[data-id="${draggedId}"]`);
-        container.insertBefore(dragged, target);
-      }
-    });
-  });
+function dropCard(event) {
+  event.preventDefault();
+  const draggedId = event.dataTransfer.getData('text/plain');
+  const targetCard = event.currentTarget;
+  const container = targetCard.parentNode;
+  const draggedCard = container.querySelector(`[data-id='${draggedId}']`);
+
+  if (draggedCard && targetCard && draggedCard !== targetCard) {
+    const allCards = Array.from(container.children);
+    const draggedIndex = allCards.indexOf(draggedCard);
+    const targetIndex = allCards.indexOf(targetCard);
+    if (draggedIndex < targetIndex) {
+      container.insertBefore(draggedCard, targetCard.nextSibling);
+    } else {
+      container.insertBefore(draggedCard, targetCard);
+    }
+  }
 }
 
 function submitOrder() {
@@ -68,8 +72,16 @@ function submitOrder() {
       : `你答對了 ${correct} / ${steps.length} 個步驟`;
 
   const seqDiv = document.getElementById('correct-sequence');
-  seqDiv.innerHTML = steps.map(s =>
-    `<div class="card">${s.name}</div>`).join('');
+  seqDiv.innerHTML = '';
+  steps.forEach(step => {
+    const resultCard = document.createElement('div');
+    resultCard.className = 'card';
+    resultCard.innerHTML = `
+      <img src="assets/${step.image}" style="width:100%; height:100px; object-fit:contain; border-radius:6px;"><br>
+      <strong>${step.name}</strong>
+    `;
+    seqDiv.appendChild(resultCard);
+  });
 }
 
 function restartGame() {
