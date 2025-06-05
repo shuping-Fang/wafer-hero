@@ -21,7 +21,9 @@ function renderCards(cardData) {
     card.className = 'card';
     card.draggable = true;
     card.dataset.id = step.id;
-    card.innerHTML = `<div>${step.name}</div>`;
+    card.innerHTML = `
+    <img src="assets/${step.image}" style="width:100%; border-radius:6px;"><br>
+    <strong>${step.name}</strong>;
     card.addEventListener('dragstart', dragStart);
     area.appendChild(card);
   });
